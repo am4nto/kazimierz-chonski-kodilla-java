@@ -19,14 +19,16 @@ public class TestingMain {
 
         int number1 = 3;
         int number2 = 2;
-        Calculator calculator = new Calculator(number1,number2);
-        if (calculator.add() == (number1 + number2)){
+        Calculator calculator = new Calculator();
+        int a = 3;
+        int b = 2;
+        if (calculator.add(number1, number2) == (number1  + number2)){
                 System.out.println("Adding OK");
         }
             else{
             System.out.println("Adding error");
             }
-        if (calculator.substract() == (number1 - number2)){
+        if (calculator.substract(number1, number2) == (number1 - number2)){
                 System.out.println("Substracting OK");
         }
     }

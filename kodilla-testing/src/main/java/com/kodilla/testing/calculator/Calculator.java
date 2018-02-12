@@ -4,16 +4,16 @@ public class Calculator {
     int a;
     int b;
 
-    public Calculator(int a, int b){
-        this.a = a;
-        this.b = b;
+    public Calculator(){
+        this.a = 0;
+        this.b = 0;
     }
 
-    public int add(){
+    public int add(int a, int b ){
         return(a+b);
     }
 
-    public int substract() {
+    public int substract(int a, int b ) {
         return (a - b);
     }
 }
