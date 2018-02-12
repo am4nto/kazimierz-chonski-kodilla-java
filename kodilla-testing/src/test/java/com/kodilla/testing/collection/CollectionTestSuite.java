@@ -43,15 +43,17 @@ public class CollectionTestSuite {
         list2.add(51);
         list2.add(66);
         list2.add(2);
-        int modulo = 0;
+        ArrayList<Integer>listExpected = new ArrayList<Integer>();
+        listExpected.add(12);
+        listExpected.add(0);
+        listExpected.add(66);
+        listExpected.add(2);
+
         OddNumbersExterminator exterminator = new OddNumbersExterminator();
         ArrayList<Integer> results = exterminator.exterminate(list2);
 
         System.out.println("Testing: " + results);
-        for (int result : results) {
-            modulo = result % 2;
-           Assert.assertEquals(0, modulo);
-        }
+        Assert.assertEquals(listExpected, results);
 
     }
 
