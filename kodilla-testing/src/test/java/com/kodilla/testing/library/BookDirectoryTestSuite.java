@@ -109,7 +109,6 @@ public class BookDirectoryTestSuite {
         Assert.assertTrue(library.listBooksInHandsOf(user1).isEmpty());
         Assert.assertEquals(1, library.listBooksInHandsOf(user2).size());
         Assert.assertEquals(5, library.listBooksInHandsOf(user3).size());
-
     }
 
 }
