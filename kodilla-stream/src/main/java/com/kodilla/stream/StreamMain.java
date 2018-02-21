@@ -32,6 +32,5 @@ public class StreamMain {
 
         usersMap.entrySet().stream()
                 .forEach(System.out::println);
-
     }
 }
