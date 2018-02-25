@@ -151,11 +151,11 @@ public class BoardTestSuite {
         OptionalDouble averageDuration = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(t1 -> t1.getTasks().stream())
-                .mapToDouble(t -> t.getCreated().compareTo(LocalDate.now()))
+                .mapToDouble(t -> LocalDate.now().compareTo(t.getCreated()))
                 .average();
-        double getAverageDuration = averageDuration.getAsDouble();
+        double averageDurationAsDouble = averageDuration.getAsDouble();
 
         //Then
-        Assert.assertEquals(-10, getAverageDuration, 0.01);
+        Assert.assertEquals(10, averageDurationAsDouble, 0.01);
     }
 }
