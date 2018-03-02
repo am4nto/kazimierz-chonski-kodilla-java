@@ -3,32 +3,33 @@ package com.kodilla.exception.test;
 import java.util.HashMap;
 
 public class FlightFinder {
-    HashMap<String, Boolean>foundFlights = new HashMap<String, Boolean>();
+    private HashMap<String, Boolean>flights;
 
-    public void findFilght (Flight flight){
-        foundFlights.put(flight.getArrivalAirport(), true);
+    public FlightFinder(HashMap<String, Boolean> flights) {
+        this.flights = flights;
     }
 
-    public void displayFlight(String airport) throws RouteNotFoundException {
-        if (foundFlights.containsKey(airport)){
-            System.out.println("U can fly to " + airport);
-        }
-        else throw new RouteNotFoundException("Airport not found");
+    public void findFilght (Flight flight) throws RouteNotFoundException{
+        if (flights.containsKey(flight.getArrivalAirport())) {
+            System.out.println("U can fly to " + flight.getArrivalAirport());
+        } else throw new RouteNotFoundException("Airport not found");
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         Flight flight1 = new Flight("Warszawa", "Krakow");
         Flight flight2 = new Flight("Krakow", "Warszawa");
         Flight flight3 = new Flight("Warszawa", "Gdansk" );
 
-        FlightFinder finder = new FlightFinder();
-        finder.findFilght(flight1);
-        finder.findFilght(flight2);
-        finder.findFilght(flight3);
+        HashMap<String, Boolean>flightsMap = new HashMap<String, Boolean>();
+        flightsMap.put(flight1.getArrivalAirport(), true);
+        flightsMap.put(flight2.getArrivalAirport(), true);
+        flightsMap.put(flight3.getArrivalAirport(), true);
+
+        FlightFinder finder = new FlightFinder(flightsMap);
 
         try {
-            finder.displayFlight("Warszawa");
-            finder.displayFlight("Sosnowiec");
+            finder.findFilght(flight1);
+            finder.findFilght(new Flight("Warszawa", "Sosnowiec"));
         }catch (Exception e) {
             System.out.println("Route not found: " + e);
         }finally {
