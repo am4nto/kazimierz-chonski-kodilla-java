@@ -1,4 +1,7 @@
 package com.kodilla.rps;
 
-public class Rock {
+import java.util.List;
+
+public class Rock implements Move {
+
 }

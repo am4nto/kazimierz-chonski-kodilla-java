@@ -1,4 +1,4 @@
 package com.kodilla.rps;
 
-public class Paper {
+public class Paper implements Move {
 }

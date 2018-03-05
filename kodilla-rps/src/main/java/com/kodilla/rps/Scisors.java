@@ -1,4 +1,4 @@
 package com.kodilla.rps;
 
-public class Scisors {
+public class Scisors implements Move {
 }
