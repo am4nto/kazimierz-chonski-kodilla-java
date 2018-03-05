@@ -3,11 +3,9 @@ package com.kodilla.good.patterns.challenges;
 import java.time.LocalDate;
 
 public class ProductOrderService {
-    private Order order;
     private ShippingService shippingService;
 
     public ProductOrderService(final ShippingService shippingService) {
-        //this.order = order;
         this.shippingService = shippingService;
     }
 
