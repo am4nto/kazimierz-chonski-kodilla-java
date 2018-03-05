@@ -6,8 +6,8 @@ public class ProductOrderService {
     private Order order;
     private ShippingService shippingService;
 
-    public ProductOrderService(final Order order, final ShippingService shippingService) {
-        this.order = order;
+    public ProductOrderService(final ShippingService shippingService) {
+        //this.order = order;
         this.shippingService = shippingService;
     }
 
