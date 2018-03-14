@@ -1,5 +1,6 @@
 package com.kodilla.spring.calculator;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,10 +23,11 @@ public class CalculatorTestSuite {
         double mul = calculator.mul(3, 2);
         double div = calculator.div(9, 3);
 
-        calculator.displayVal(add);
-        calculator.displayVal(sub);
-        calculator.displayVal(mul);
-        calculator.displayVal(div);
+        //Then
+        Assert.assertEquals(8, add, 0.01);
+        Assert.assertEquals(-2, sub, 0.01);
+        Assert.assertEquals(6, mul, 0.01);
+        Assert.assertEquals(3, div, 0.01);
     }
 
 }
