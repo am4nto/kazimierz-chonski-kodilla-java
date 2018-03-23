@@ -27,11 +27,9 @@ public class MoveMaker {
                 throw new BadInputException("Wprowadz poprawna wartosc");
         }
     }
-    public Move myMove() throws BadInputException {
-        Random generator = new Random();
-        int random = generator.nextInt(3);
+    public Move myMove(int input) throws BadInputException {
         Move move;
-        switch (random) {
+        switch (input) {
             case 0: {
                 System.out.println("Moj ruch: Kamien");
                 move = new Rock();
@@ -48,7 +46,7 @@ public class MoveMaker {
                 break;
             }
             default:
-                throw new BadInputException("Nieprawidlowa wartosc: " + random);
+                throw new BadInputException("Nieprawidlowa wartosc: " + input);
         }
         return move;
     }
