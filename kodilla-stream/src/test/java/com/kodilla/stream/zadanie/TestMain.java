@@ -27,7 +27,7 @@ public class TestMain {
         //then
         Assert.assertEquals(3, count);
     }
-
+/*
     @Test
     public void testDeleteEmptyStringsUsingJava8() {
         //given
@@ -106,4 +106,5 @@ public class TestMain {
         //then
         Assert.assertEquals(expected, result);
     }
+    */
 }
