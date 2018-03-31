@@ -2,14 +2,14 @@ package com.kodilla.rps;
 
 import java.util.ArrayList;
 
-class Paper extends Move {
-    Paper() {
-        this.name = "paper";
+public class Bomb extends Move {
+    public Bomb() {
+        this.name = "bomb";
         this.losesAgainst = new ArrayList<>();
+        losesAgainst.add("rock");
         losesAgainst.add("scisors");
-        losesAgainst.add("bomb");
         this.winsAgainst = new ArrayList<>();
-        winsAgainst.add("rock");
         winsAgainst.add("well");
+        winsAgainst.add("paper");
     }
 }

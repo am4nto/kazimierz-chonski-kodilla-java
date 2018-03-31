@@ -6,36 +6,12 @@ import org.junit.Test;
 import java.util.Random;
 
 public class RPSTestSuite {
-    @Test
-    public void testMove() {
-        MoveMaker maker = new MoveMaker();
-        MoveProcessor processor = new MoveProcessor();
-        Random generator = new Random();
-        int count = 10;
-
-        for (int i = 0; i <= count; i++) {
-            int random1 = generator.nextInt(3);
-            int random2 = generator.nextInt(3);
-            //System.out.println(random);
-            String moves = "RPS";
-            String response = moves.charAt(random1) + "";
-            //System.out.println(response);
-            try {
-                Move yuourMove = maker.yourMove(response);
-                Move myMove = maker.myMove(random2);
-                processor.process(yuourMove, myMove);
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        System.out.println("Wynik: " + processor.getWinCount() + ":" + processor.getLoseCount());
-    }
 
     @Test public void testYouWin() {
         MoveMaker maker = new MoveMaker();
         MoveProcessor processor = new MoveProcessor();
         try {
-            Move yuourMove = maker.yourMove("R");
+            Move yuourMove = maker.yourMove("R", 3);
             Move myMove = maker.myMove(2);
             processor.process(yuourMove, myMove);
         } catch (Exception e) {
@@ -49,7 +25,7 @@ public class RPSTestSuite {
         MoveMaker maker = new MoveMaker();
         MoveProcessor processor = new MoveProcessor();
         try {
-            Move yuourMove = maker.yourMove("R");
+            Move yuourMove = maker.yourMove("R", 3);
             Move myMove = maker.myMove(1);
             processor.process(yuourMove, myMove);
         } catch (Exception e) {
@@ -63,7 +39,7 @@ public class RPSTestSuite {
         MoveMaker maker = new MoveMaker();
         MoveProcessor processor = new MoveProcessor();
         try {
-            Move yuourMove = maker.yourMove("R");
+            Move yuourMove = maker.yourMove("R", 3);
             Move myMove = maker.myMove(0);
             processor.process(yuourMove, myMove);
         } catch (Exception e) {
