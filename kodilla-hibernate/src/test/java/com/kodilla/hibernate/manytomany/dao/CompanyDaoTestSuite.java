@@ -2,6 +2,7 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.facade.ManyToManyFacade;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -88,6 +89,8 @@ public class CompanyDaoTestSuite {
         //When
         List<Employee> wasaty = employeeDao.findByLastName("Wasaty");
         List<Company> jan = companyDao.findByNameStartingWith("Jan");
+
+        System.out.println();
 
         //Then
         Assert.assertEquals(1, wasaty.size());
