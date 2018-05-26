@@ -33,17 +33,32 @@ public class FacadeTestSuite {
         Company someCompany = new Company("Some Company");
         List<Integer> companyIds = new LinkedList<>();
 
-        Employee marjan = new Employee("Marjan", "Nowak");
-        Employee zenon = new Employee("Zenon", "Jankowski");
-        Employee onofry = new Employee("Onufry", "Ziemowid");
-        List<Integer> employeeIds = new LinkedList<>();
-
         companyDao.save(fajnaFirma);
         companyIds.add(fajnaFirma.getId());
         companyDao.save(nowaSpolka);
         companyIds.add(nowaSpolka.getId());
         companyDao.save(someCompany);
         companyIds.add(someCompany.getId());
+
+        //When
+        List<Company> irm = facade.findCompany("irm");
+
+        //Then
+        Assert.assertEquals(1, irm.size());
+
+        //CleanUp
+        for (int id : companyIds) {
+            companyDao.delete(id);
+        }
+
+    }
+    @Test
+    public void testFindEmployee() {
+        //Given
+        Employee marjan = new Employee("Marjan", "Nowak");
+        Employee zenon = new Employee("Zenon", "Jankowski");
+        Employee onofry = new Employee("Onufry", "Ziemowid");
+        List<Integer> employeeIds = new LinkedList<>();
 
         employeeDao.save(marjan);
         employeeIds.add(marjan.getId());
@@ -53,20 +68,14 @@ public class FacadeTestSuite {
         employeeIds.add(onofry.getId());
 
         //When
-        List<Company> irm = facade.findCompany("irm");
         List<Employee> jan = facade.findEmployee("jan");
 
         //Then
-        Assert.assertEquals(1, irm.size());
         Assert.assertEquals(2, jan.size());
 
-        //Cleanup
-        for (int id : companyIds) {
-            companyDao.delete(id);
-        }
+        //CleanUp
         for (int id : employeeIds) {
             employeeDao.delete(id);
         }
-
     }
 }

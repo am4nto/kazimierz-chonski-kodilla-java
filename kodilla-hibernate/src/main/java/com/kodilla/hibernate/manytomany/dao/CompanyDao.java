@@ -16,6 +16,5 @@ public interface CompanyDao extends CrudRepository<Company, Integer> {
 
     @Query(nativeQuery = true)
     List<Company>findByName(@Param("NAME") String name);
-
 }
 

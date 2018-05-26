@@ -12,7 +12,7 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Employee.findByName",
-        query = "SELECT * FROM EMPLOYEES WHERE FIRSTNAME LIKE :NAME OR LASTNAME LIKE :NAME",
+        query = "SELECT * FROM EMPLOYEES WHERE FIRSTNAME LIKE (CONCAT('%',:NAME,'%')) OR LASTNAME LIKE (CONCAT('%',:NAME,'%'))",
         resultClass = Employee.class
 )
 
