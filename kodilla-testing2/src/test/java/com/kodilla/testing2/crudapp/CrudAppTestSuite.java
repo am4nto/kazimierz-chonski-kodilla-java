@@ -117,22 +117,12 @@ public class CrudAppTestSuite {
                             theForm.findElement(By.xpath(".//fieldset[1]/button[4]"));
                     buttonDeleteCard.click();
                 });
-       Thread.sleep(2000);
     }
     @Test
     public void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = createCrudAppTestTask();
         sendTaskToTrello(taskName);
-        try {
-            assertTrue(checkTaskExistsInTrello(taskName));
-        } catch (AssertionError e) {
-            System.out.println(e);
-        } finally {
-            cleanUp(taskName);
-        }
-
-
-
-
+        cleanUp(taskName);
+        assertTrue(checkTaskExistsInTrello(taskName));
     }
 }
