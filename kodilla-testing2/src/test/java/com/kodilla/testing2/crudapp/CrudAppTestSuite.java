@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -73,11 +74,14 @@ public class CrudAppTestSuite {
                     buttonCreateCard.click();
                 });
         Thread.sleep(5000);
+
+        driver.switchTo().alert().accept();
+        //driver.close();
     }
 
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
         final String TRELLO_URL = "https://trello.com/login";
-        boolean result = true;
+        boolean result = false;
         WebDriver driverTrello = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driverTrello.get(TRELLO_URL);
 
@@ -85,25 +89,44 @@ public class CrudAppTestSuite {
         driverTrello.findElement(By.id("password")).sendKeys("***");
         driverTrello.findElement(By.id("login")).submit();
 
+        Thread.sleep(5000);
+
+        driverTrello.get("https://trello.com/amanto/boards");
+
         Thread.sleep(2000);
 
-        driverTrello.findElements(By.xpath("//a[@class=\"board-title\"]")).stream()
+        driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
                 .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Application\"]")).size() > 0)
                 .forEach(aHref -> aHref.click());
 
-        Thread.sleep(2000);
+        Thread.sleep(5000);
 
-        result = driverTrello.findElements(By.xpath("//span")).stream()
-                .filter(theSpan -> theSpan.getText().contains(taskName))
-                .collect(Collectors.toList())
-                .size() > 0;
+        boolean check = true;
+        while (true) {
+            check = true;
+            try {
+                result = driverTrello.findElements(By.xpath("//span")).parallelStream()
+                        .filter(theSpan -> theSpan.getText().contains(taskName))
+                        .collect(Collectors.toList())
+                        .size() > 0;
+            } catch (StaleElementReferenceException e) {
+                if (e.getMessage().contains("element is not attached")) {
+                    check = false;
+                }
+            }
+            if (check) {
+                break;
+            }
+
+        }
+        Thread.sleep(5000);
 
         driverTrello.close();
 
         return result;
     }
 
-   private void cleanUp(String taskName) throws InterruptedException {
+   private void cleanUp(String taskName) {
         driver.navigate().refresh();
 
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed());
